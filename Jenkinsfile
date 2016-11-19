@@ -3,7 +3,7 @@ node {
   sh 'ps -aef|grep java'
   sh '''#!/bin/bash
 SOURCE_REPO=https://github.com/jenkinsci/jenkins.git
-TARGET_REPO=https://github.com/gitaccountforprashant/gittest.git
+TARGET_REPO=git@github.com:gitaccountforprashant/gittest.git
 
 git clone "${SOURCE_REPO}"
 git clone "${TARGET_REPO}"
