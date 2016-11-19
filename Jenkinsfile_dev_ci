@@ -4,12 +4,13 @@ git 'https://github.com/gskrscm/gittest.git'
 sh 'git remote add upstream https://github.com/gitaccountforprashant/gittest.git'
 sh 'git fetch upstream'
 sh 'git checkout master'
-sh 'git merge upstream/master'
+sh 'git merge upstream/master  --no-edit'
+sh 'git push'
 }
 
 stage 'Build'
 node {
-git 'https://github.com/gitaccountforprashant/gittest.git'
-sh '''mvn clean install
+git 'https://github.com/gskrscm/gittest.git'
+sh '''mvn clean install -pl war -am -DskipTests
 '''
 }
