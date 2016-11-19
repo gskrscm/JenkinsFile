@@ -2,8 +2,8 @@ node {
   sh 'echo hello world'
   sh 'ps -aef|grep java'
   sh '''#!/bin/bash
-SOURCE_REPO=$1
-TARGET_REPO=$2
+SOURCE_REPO=https://github.com/jenkinsci/jenkins.git
+TARGET_REPO=git@github.com:gitaccountforprashant/gittest.git
 
 git clone "${SOURCE_REPO}"
 git clone "${TARGET_REPO}"
