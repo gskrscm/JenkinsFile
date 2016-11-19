@@ -1,6 +1,6 @@
 stage 'Dev Sync up'
 node {
-git 'https://github.com/gskrscm/gittest.git'
+git 'git@github.com:gskrscm/gittest.git'
 // This is one time activity. 
 //sh 'git remote add upstream https://github.com/gitaccountforprashant/gittest.git'
 sh 'git fetch upstream'
