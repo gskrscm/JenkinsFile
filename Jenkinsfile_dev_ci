@@ -1,7 +1,7 @@
 stage 'Dev Sync up'
 node {
 git 'https://github.com/gskrscm/gittest.git'
-sh 'git remote add upstream https://github.com/gitaccountforprashant/gittest.git'
+#sh 'git remote add upstream https://github.com/gitaccountforprashant/gittest.git'
 sh 'git fetch upstream'
 sh 'git checkout master'
 sh 'git merge upstream/master  --no-edit'
