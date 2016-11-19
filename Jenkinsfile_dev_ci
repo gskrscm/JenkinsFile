@@ -6,8 +6,8 @@ git 'https://github.com/gskrscm/gittest.git'
 sh 'git fetch upstream'
 sh 'git checkout master'
 sh 'git merge upstream/master  --no-edit'
-sh 'git config --global user.email "gskr.scm@gmail.com"'
-sh 'git config --global user.name "gskrscm"'
+sh 'git config user.email "gskr.scm@gmail.com"'
+sh 'git config user.name "gskrscm"'
 sh 'git push'
 }
 
