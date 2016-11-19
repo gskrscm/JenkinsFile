@@ -2,7 +2,7 @@ stage 'Dev Sync up'
 node ('35.163.27.127') {
 git 'git@github.com:gskrscm/gittest.git'
 // This is one time activity. 
-//sh 'git remote add upstream https://github.com/gitaccountforprashant/gittest.git'
+sh 'git remote add upstream https://github.com/gitaccountforprashant/gittest.git'
 sh 'git fetch upstream'
 sh 'git checkout master'
 sh 'git merge upstream/master  --no-edit'
