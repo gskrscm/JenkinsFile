@@ -1,5 +1,5 @@
 stage 'Dev Sync up'
-node {
+node ('35.163.27.127') {
 git 'git@github.com:gskrscm/gittest.git'
 // This is one time activity. 
 //sh 'git remote add upstream https://github.com/gitaccountforprashant/gittest.git'
@@ -12,7 +12,7 @@ sh 'git push'
 }
 
 stage 'Build'
-node {
+node ('35.163.27.127') {
 git 'https://github.com/gskrscm/gittest.git'
 sh '''mvn clean install -pl war -am -DskipTests
 '''
