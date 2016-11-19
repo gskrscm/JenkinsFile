@@ -24,7 +24,7 @@ mv !(.git|.|..) ../${TARGET_NAME}
 
 
 cd ../${TARGET_NAME}
-git config --global "prashant.dec25@gmail.com"
+git config --global user.email "prashant.dec25@gmail.com"
 git config --global user.name "gitaccountforprashant"
 git add --all .
 git commit -m "Test commit"
