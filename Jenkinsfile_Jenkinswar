@@ -1,6 +1,5 @@
 node {
 git 'https://github.com/gitaccountforprashant/gittest.git'
-sh '''cd gittest
-mvn clean install -pl war -am -DskipTests
+sh '''mvn clean install -pl war -am -DskipTests
 '''
 }
