@@ -1,0 +1,22 @@
+
+ stage 'build ubuntu base image'
+ node('slave1-bc63f2f9'){
+    sh 'sudo docker pull ubuntu'
+    sh 'echo FROM ubuntu> Dockerfile'
+    sh 'echo RUN apt-get update >> Dockerfile'
+    sh 'cat Dockerfile'
+    sh 'sudo $(aws ecr get-login)'
+    sh 'sudo docker build -t 551163406316.dkr.ecr.us-west-2.amazonaws.com/baseimage:${BUILD_NUMBER} .'
+    sh 'sudo docker push 551163406316.dkr.ecr.us-west-2.amazonaws.com/baseimage:${BUILD_NUMBER}'
+}
+
+stage 'update dockerfile' 
+node('slave1-bc63f2f9'){
+    git 'git@github.com:abhishekgaurav1/dockerfiles.git'
+    sh 'sed -i  \"s#FROM.*#FROM 551163406316.dkr.ecr.us-west-2.amazonaws.com/baseimage:${BUILD_NUMBER}#\" Dockerfile.jenkins'
+    sh '''git config user.email "gskr.scm@gmail.com"
+    git config user.name "gskrscm"'''
+    sh 'git add --all .'
+    sh 'git commit -m "${BUILD_NUMBER} updated dockerfile"'
+    sh 'git push --all origin'
+}
