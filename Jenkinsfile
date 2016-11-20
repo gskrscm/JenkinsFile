@@ -1,4 +1,4 @@
-node {
+node ('slave1-bc63f2f9'){
   sh 'echo hello world'
   sh 'ps -aef|grep java'
   sh '''#!/bin/bash
