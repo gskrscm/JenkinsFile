@@ -20,5 +20,5 @@ sh '''mvn clean install -pl war -am -DskipTests
 
 stage 'stage to nexus'
 node ('slave2-67445229') {
-sh 'curl -v -F r=PAAS -F hasPom=false -F e=war -F g=TescoJenkins -F a=war -F v=${BUILD_NUMBER} -F p=war -F file=/home/ubuntu/workspace/JenkinsDevCI/war/target/jenkins.war -u xq90:Siva!11047666 https://nexus.dev.global.tesco.org/nexus/service/local/artifact/maven/content'
+sh'curl --upload-file /home/ubuntu/workspace/JenkinsDevCI/war/target/jenkins.war https://nexus.dev.global.tesco.org/nexus/content/repositories/PAAS/TescoJenkins/war/${BUILD_NUMBER}/jenkins.war -u xq90:'Siva!11047666''
 }
