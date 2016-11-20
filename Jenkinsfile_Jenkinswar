@@ -1,5 +1,0 @@
-node {
-git 'https://github.com/gitaccountforprashant/gittest.git'
-sh '''mvn clean install
-'''
-}
