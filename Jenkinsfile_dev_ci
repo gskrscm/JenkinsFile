@@ -20,5 +20,5 @@ sh '''mvn clean install -pl war -am -DskipTests
 
 stage 'stage to nexus'
 node ('slave2-67445229') {
-sh 'echo hello world'
+sh 'curl -v -F r=PAAS -F hasPom=false -F e=war -F g=TescoJenkins -F a=war -F v=$BUILD_NUMBER -F p=war -F file=/home/ubuntu/workspace/JenkinsDevCI/war/target/jenkins.war -u svc-jenkinsldap:J3nk1nld@p https://nexus.dev.global.tesco.org/nexus/service/local/artifact/maven/content'
 }
