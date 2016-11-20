@@ -26,8 +26,11 @@ sh'curl --upload-file /home/ubuntu/workspace/JenkinsDevCI/war/target/jenkins.war
 stage 'build docker image'
 node ('slave2-67445229') {
 git 'https://github.com/abhishekgaurav1/dockerfiles.git'
+sh 'sudo docker stop $(sudo docker ps -q)'
+sh 'sudo docker rm $(sudo docker ps -aq)'
 sh 'mv Dockerfile.jenkins Dockerfile'
+sh 'sed -i  \"s#ADD NEXUS_URL_JENKINS.*#ADD https://nexus.dev.global.tesco.org/nexus/content/repositories/PAAS/TescoJenkins/war/${BUILD_NUMBER}/jenkins.war /opt/jenkins.war#\" Dockerfile'
 sh 'sudo docker build -t jenkins:${BUILD_NUMBER} .'
 sh 'sudo docker run -d -p 8080:8080 jenkins:${BUILD_NUMBER}'
-sh 'curl -I http://35.163.235.44:8080 | grep 200'
+sh 'echo http://35.163.235.44:8080'
 }
