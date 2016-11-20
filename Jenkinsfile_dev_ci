@@ -14,7 +14,7 @@ sh 'git push'
 stage 'Build'
 node ('slave2-67445229') {
 git 'https://github.com/gskrscm/gittest.git'
-sh '''mvn clean install -pl war -am -DskipTests -Dmaven.wagon.http.ssl.insecure=true -Dmaven.wagon.http.ssl.allowall=true -Dmaven.wagon.http.ssl.ignore.validity.dates=true
+sh '''mvn clean install -pl war -am -DskipTests
 '''
 }
 
