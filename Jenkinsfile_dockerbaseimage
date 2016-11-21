@@ -2,7 +2,7 @@
  stage 'build ubuntu base image'
  node('slave1-bc63f2f9'){
     sh 'sudo docker pull ubuntu:14.04'
-    sh 'echo FROM ubuntu> Dockerfile'
+    sh 'echo FROM ubuntu:14.04 > Dockerfile'
     sh 'echo RUN apt-get update >> Dockerfile'
     sh 'cat Dockerfile'
     sh 'sudo $(aws ecr get-login)'
