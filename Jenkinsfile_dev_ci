@@ -20,7 +20,7 @@ sh '''mvn clean install -pl war -am -DskipTests
 
 stage 'stage to nexus'
 node ('slave1-bc63f2f9') {
-sh'curl --upload-file /home/ubuntu/workspace/JenkinsDevCI/war/target/jenkins.war https://nexus.dev.global.tesco.org/nexus/content/repositories/PAAS/TescoJenkins/war/${BUILD_NUMBER}/jenkins.war -u ${username}:${password}'
+sh'curl --upload-file /home/ubuntu/workspace/JenkinsDevCI/war/target/jenkins.war <nexus_url>/jenkins.war -u ${username}:${password}'
 }
 
 stage 'build docker image'
@@ -29,7 +29,7 @@ git 'https://github.com/abhishekgaurav1/dockerfiles.git'
 // sh 'sudo docker stop $(sudo docker ps -q)'
 // sh 'sudo docker rm $(sudo docker ps -aq)'
 sh 'mv Dockerfile.jenkins Dockerfile'
-sh 'sed -i  \"s#RUN wget NEXUS_URL_JENKINS.*#RUN wget --user ${username} --password ${password} https://nexus.dev.global.tesco.org/nexus/content/repositories/PAAS/TescoJenkins/war/${BUILD_NUMBER}/jenkins.war -P /opt#\" Dockerfile'
+sh 'sed -i  \"s#RUN wget NEXUS_URL_JENKINS.*#RUN wget --user ${username} --password ${password} <nexus_url>/jenkins.war -P /opt#\" Dockerfile'
 sh 'cat Dockerfile'
 sh 'sudo $(aws ecr get-login)'
 sh 'sudo docker build -t 551163406316.dkr.ecr.us-west-2.amazonaws.com/jenkins:${BUILD_NUMBER} .'
